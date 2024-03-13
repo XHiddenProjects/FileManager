@@ -1,13 +1,32 @@
-package CS121Chapter4;
+package FileManager;
+
 import java.io.*;
 import java.nio.file.*;
 import java.text.StringCharacterIterator;
 import java.util.*;
-
+/**
+ * FileManager is an easy-to-use file management functions and keeps 
+ * things organized and does the importing for you
+ * @author XhiddenProjects
+ * @version 1.0.0
+ * @since 3/13/2024
+ * @see <a href="https://github.com/XHiddenProjects/FileManager" target>Documentation</a>
+ */
 public class FileManager {
+	/**
+	 * Converts String to valid File element
+	 * @param path - String path to convert
+	 * @return Returns a valid File object
+	 * */
 	public File toFile(String path) {
 		return Paths.get(path).toFile();
 	}
+	/**
+	 * Creates a file/directory 
+	 * @param filePath - Path to add directory
+	 * @param isDir - Creates folder, if true
+	 * @return Returns the success on creating element
+	 * */
 	public boolean add(File filePath, boolean isDir) {
 		try {
 			if(isDir) {
@@ -30,6 +49,11 @@ public class FileManager {
 		}
 		return false;
 	}
+	/**
+	 * Creates a file/directory 
+	 * @param filePath - Path to add directory
+	 * @return Returns the success on creating element
+	 * */
 	public boolean add(File filePath) {
 		try {
 			if(filePath.createNewFile()) {
@@ -43,6 +67,12 @@ public class FileManager {
 		}
 		return false;
 	}
+	/**
+	 * Writes inside a file
+	 * @param filePath - Path to file
+	 * @param context - The value to place inside of file
+	 * @return Returns the success on writing element
+	 * */
 	public boolean write(File filePath, String context) {
 		try {
 			FileWriter fileObj = new FileWriter(filePath);
@@ -55,6 +85,11 @@ public class FileManager {
 		}
 		return false;
 	}
+	/**
+	 * Writes inside a file
+	 * @param filePath - Path to file
+	 * @return Returns the files context
+	 * */
 	public String read(File filePath) {
 		try {
 			String text="";
@@ -70,6 +105,12 @@ public class FileManager {
 		}
 		return "";
 	}
+	/**
+	 * Deletes files/folders
+	 * @param filePath - Path to file
+	 * @param isDir - File is a directory
+	 * @return Returns the files deletion
+	 * */
 	public boolean delete(File filePath, boolean isDir) {
 		//File fileObj = new File(file2);
 		if(isDir) {
@@ -86,6 +127,11 @@ public class FileManager {
 		}else
 			return false;
 	}
+	/**
+	 * Writes inside a file
+	 * @param filePath - Path to file
+	 * @return Returns the files deletion
+	 * */
 	public boolean delete(File filePath) {
 		if(filePath.delete()) {
 			return true;
@@ -93,25 +139,73 @@ public class FileManager {
 			return false;
 		}
 	}
+	/**
+	 * Renames file/directory
+	 * @param filePath - Path to file
+	 * @param newName - The new path to rename
+	 * @return Returns the files rename succession
+	 * */
+	public boolean rename(File filePath, File newName) {
+		if(filePath.renameTo(newName)) {
+			return true;
+		}else {
+			return false;
+		}
+	}
+	/**
+	 * Get files` full name
+	 * @param filePath - Path to file
+	 * @return Returns the files full name
+	 * */
 	public String getFullName(File filePath) {
 		return filePath.getName();
 	}
+	/**
+	 * Get files` parent full name
+	 * @param filePath - Path to file
+	 * @return Returns the files full name
+	 * */
 	public String getParent(File filePath) {
 		return filePath.getParent();
 	}
+	/**
+	 * Get files' path
+	 * @param filePath - Path to file
+	 * @return Returns the files path
+	 * */
 	public String getPath(File filePath) {
 		return filePath.getPath();
 	}
+	/**
+	 * Get Absolute file
+	 * @param filePath - Path to file
+	 * @return Returns the files absolute file
+	 * */
 	public File getAbsFile(File filePath) {
 		return filePath.getAbsoluteFile();
 	}
+	/**
+	 * Get Absolute path
+	 * @param filePath - Path to file
+	 * @return Returns the absolute path
+	 * */
 	public String getAbsPath(File filePath) {
 		return filePath.getAbsolutePath();
 	}
+	/**
+	 * Get files` extension
+	 * @param filePath - Path to file
+	 * @return Returns the files` extension
+	 * */
 	public String getExtension(File filePath) {
 		String[] args = this.getFullName(filePath).split("\\.");
 		return args[1];
 	}
+	/**
+	 * Get files' name
+	 * @param filePath - Path to file
+	 * @return Returns the files` name
+	 * */
 	public String getName(File filePath) {
 		String[] args = this.getFullName(filePath).split("\\.");
 		return args[0];
@@ -127,15 +221,35 @@ public class FileManager {
 		    }
 		    return String.format("%.1f %cB", bytes / 1000.0, ci.current());
 	}
+	/**
+	 * Get paths free space
+	 * @param filePath - Path to file
+	 * @return Returns the path free space
+	 * */
 	public String getFreeSpace(File filePath) {
 		return this.byte2read(filePath.getFreeSpace());
 	}
+	/**
+	 * Get paths total space
+	 * @param filePath - Path to file
+	 * @return Returns the paths total space
+	 * */
 	public String getTotalSpace(File filePath) {
 		return this.byte2read(filePath.getTotalSpace());
 	}
+	/**
+	 * Get paths usable space
+	 * @param filePath - Path to file
+	 * @return String - Returns the paths usable space
+	 * */
 	public String getUsableSpace(File filePath) {
 		return this.byte2read(filePath.getUsableSpace());
 	}
+	/**
+	 * Get canonical files
+	 * @param filePath - Path to file
+	 * @return Returns the canonical file
+	 * */
 	public File getCanFile(File filePath) {
 		File path = null;
 		try {
@@ -146,6 +260,11 @@ public class FileManager {
 		}
 		return path;
 	}
+	/**
+	 * Get canonical path
+	 * @param filePath - Path to file
+	 * @return Returns the canonical path
+	 * */
 	public String getCanPath(File filePath) {
 		String path = null;
 		try {
@@ -156,31 +275,70 @@ public class FileManager {
 		}
 		return path;
 	}
+	/**
+	 * Compares both paths
+	 * @param filePath1 - Path to file
+	 * @param filePath2 - Path to file
+	 * @return Returns the files full name
+	 * */
 	public int compare(File filePath1, File FilePath2) {
 		return filePath1.compareTo(FilePath2);
 	}
+	/**
+	 * Get hashcode from filepath
+	 * @param filePath - Path to file
+	 * @return Returns the hashcode filepath
+	 * */
 	public int hashCode(File filePath) {
 		return filePath.hashCode();
 	}
-	
+	/**
+	 * List all files
+	 * @param filePath - Path to file
+	 * @param files - Returns all files
+	 * @return Returns the all files
+	 * */
 	public File[] list(File filePath, boolean files) {
 		if(files) {
 			return filePath.listFiles();
 		}
 		return null;
 	}
+	/**
+	 * List all files
+	 * @param filePath - Path to file
+	 * @return Returns the all files names
+	 * */
 	public String[] list(File filePath) {
 		return filePath.list();
 	}
+	/**
+	 * List all files
+	 * @param filePath - Path to file
+	 * @param files - Returns all files
+	 * @return Returns the all abstract files/directory
+	 * */
 	public File[] listFilter(File filePath, boolean files, FilenameFilter filter) {
 		if(files) {
 		return filePath.listFiles(filter);
 		}
 		return null;
 	}
+	/**
+	 * List all files
+	 * @param filePath - Path to file
+	 * @param files - Returns all files
+	 * @return Returns an array of abstract files/directory
+	 * */
 	public String[] listFilter(File filePath, FilenameFilter filter) {
 		return filePath.list(filter);
 	}
+	/**
+	 * Checks if the file/directory is...
+	 * @param filePath - Path to file
+	 * @param type - The type to check
+	 * @return Returns boolean of file/directory status
+	 * */
 	public boolean is(File filePath, String type) {
 		boolean results=false;
 		switch(type.toLowerCase()) {
@@ -205,6 +363,12 @@ public class FileManager {
 		}
 		return results;
 	}
+	/**
+	 * Check if the file/directory can...
+	 * @param filePath - Path to file
+	 * @param type - The type to check
+	 * @return Returns the all files
+	 * */
 	public boolean can(File filePath, String type) {
 		boolean result=false;
 		switch(type.toLowerCase()) {
@@ -223,6 +387,12 @@ public class FileManager {
 		}
 		return result;
 	}
+	/**
+	 * Sets the file/directory permission
+	 * @param filePath - Path to file
+	 * @param type - The type to check
+	 * @return Returns the boolean of the file/directory permission
+	 * */
 	public void set(File filePath, String type) {
 		switch(type.toLowerCase()) {
 			case "read":
@@ -239,6 +409,13 @@ public class FileManager {
 			break;
 		}
 	}
+	/**
+	 * Sets the file/directory permission
+	 * @param filePath - Path to file
+	 * @param type - The type to check
+	 * @param value - Sets the permission
+	 * @return Returns the boolean of the file/directory permission
+	 * */
 	public void set(File filePath, String type, boolean value) {
 		switch(type.toLowerCase()) {
 			case "read":
