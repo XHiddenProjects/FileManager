@@ -1,13 +1,13 @@
 # FileManager
 FileManager is a easy Java extension that makes file managing easier
-
 ### How to install
 1. Download `FileManager.java`
-2. Import the code by using this code:
+2. Create a package named _FileManager_
+3. Import the code by using this code:
     ```java
       import FileManager.*;
     ```
-3. Then too use it, use this code:
+4. Then too use it, use this code:
    ```java
     public static void main(String[] args) {
 		// TODO Auto-generated method stub
