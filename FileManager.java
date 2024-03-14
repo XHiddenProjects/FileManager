@@ -396,13 +396,13 @@ public class FileManager {
 	public void set(File filePath, String type) {
 		switch(type.toLowerCase()) {
 			case "read":
-				filePath.setReadable(false);
+				filePath.setReadable(true);
 			break;
 			case "write":
-				filePath.setWritable(false);
+				filePath.setWritable(true);
 			break;
 			case "execute":
-				filePath.setExecutable(false);
+				filePath.setExecutable(true);
 			break;
 			default:
 				System.out.println("You must select\n- read\n- write\n- execute");
@@ -431,6 +431,5 @@ public class FileManager {
 				System.out.println("You must select read, write, and execute");
 			break;
 		}
-	}
-	
+	}	
 }
