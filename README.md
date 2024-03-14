@@ -18,6 +18,7 @@ Now you are finished with the activation!
 
 **Note**: `fm` is going to be use throughout the documentation.
 ***
+## Basics
 ### Converting String to File
 To convert a String to a File use this code
 ```java
