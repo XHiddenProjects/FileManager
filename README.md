@@ -121,7 +121,7 @@ This will compare two filepaths; type:
 ### hashCode
 Get files hashcode; type:
 ```java
-  fm.hash(fPath);//Returns hashcode
+  fm.hashCode(fPath);//Returns hashcode
 ```
 ### list
 Returns a list of directories and/or files; type:
