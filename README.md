@@ -44,8 +44,8 @@ To read a file, type:
 ### Deleting files/directories
 To delete files/directories, type:
 ```java
-  fm.delete(fPath);//Deletes file
-  fm.delete(dPath, true);//Deletes Directory
+  fm.remove(fPath);//Deletes file
+  fm.remove(dPath, true);//Deletes Directory
 ```
 ### Renaming files/directories
 To rename files/directories, type:
