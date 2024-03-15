@@ -4,6 +4,7 @@ import java.io.*;
 import java.nio.file.*;
 import java.text.StringCharacterIterator;
 import java.util.*;
+
 /**
  * FileManager is an easy-to-use file management functions and keeps 
  * things organized and does the importing for you
@@ -111,13 +112,13 @@ public class FileManager {
 	 * @param isDir - File is a directory
 	 * @return Returns the files deletion
 	 * */
-	public boolean delete(File filePath, boolean isDir) {
+	public boolean remove(File filePath, boolean isDir) {
 		//File fileObj = new File(file2);
 		if(isDir) {
 			File[] files = filePath.listFiles();
 			for (File file : files) {
 	            if (file.isDirectory()) {
-	                this.delete(file, true);
+	                this.remove(file, true);
 	            } else {
 	                file.delete();
 	            }
@@ -128,11 +129,11 @@ public class FileManager {
 			return false;
 	}
 	/**
-	 * Writes inside a file
+	 * Deletes file/directory
 	 * @param filePath - Path to file
 	 * @return Returns the files deletion
 	 * */
-	public boolean delete(File filePath) {
+	public boolean remove(File filePath) {
 		if(filePath.delete()) {
 			return true;
 		}else {
@@ -431,5 +432,6 @@ public class FileManager {
 				System.out.println("You must select read, write, and execute");
 			break;
 		}
-	}	
+	}
+	
 }
