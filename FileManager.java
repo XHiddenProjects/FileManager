@@ -4,6 +4,7 @@ import java.io.*;
 import java.nio.file.*;
 import java.text.StringCharacterIterator;
 import java.util.*;
+import javax.swing.JOptionPane;
 
 /**
  * FileManager is an easy-to-use file management functions and keeps 
@@ -14,6 +15,14 @@ import java.util.*;
  * @see <a href="https://github.com/XHiddenProjects/FileManager" target>Documentation</a>
  */
 public class FileManager {
+	/**
+	 * Allows users input
+	 * @param title - Show input title
+	 * @return Users response*/
+	public String usePrompt(String title) {
+		String prompt = JOptionPane.showInputDialog(title);
+		return prompt;
+	}
 	/**
 	 * Converts String to valid File element
 	 * @param path - String path to convert
