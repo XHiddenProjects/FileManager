@@ -9,8 +9,8 @@ import java.util.*;
  * FileManager is an easy-to-use file management functions and keeps 
  * things organized and does the importing for you
  * @author XhiddenProjects
- * @version 1.0.3
- * @since 3/15/2024
+ * @version 1.0.0
+ * @since 3/13/2024
  * @see <a href="https://github.com/XHiddenProjects/FileManager" target>Documentation</a>
  */
 public class FileManager {
@@ -69,6 +69,20 @@ public class FileManager {
 		return false;
 	}
 	/**
+	 * Closes a file/directory 
+	 * @param filePath - Path to add directory
+	 * @return Returns the success on creating element
+	 * */
+	public boolean close(File filePath) {
+		try (FileInputStream fis = new FileInputStream(filePath)) {
+		    fis.close();
+		} catch (IOException e) {
+			System.out.println("Failed to close file.");
+		    e.printStackTrace();
+		}
+		return false;
+	}
+	/**
 	 * Writes inside a file
 	 * @param filePath - Path to file
 	 * @param context - The value to place inside of file
@@ -99,6 +113,7 @@ public class FileManager {
 				String data = fileRead.nextLine();
 				text+=data;
 			}
+			fileRead.close();
 			return text;
 		}catch(FileNotFoundException e) {
 			System.out.println("File not found");
@@ -106,6 +121,7 @@ public class FileManager {
 		}
 		return "";
 	}
+	
 	/**
 	 * Deletes files/folders
 	 * @param filePath - Path to file
@@ -114,25 +130,19 @@ public class FileManager {
 	 * */
 	public boolean remove(File filePath, boolean isDir) {
 		//File fileObj = new File(file2);
-		try {
-			if(isDir) {
-				File[] files = filePath.listFiles();
-				for (File file : files) {
-		            if (file.isDirectory()) {
-		                this.remove(file, true);
-		            } else {
-		                file.delete();
-		            }
-		        }
-				filePath.delete();
-			}else
-				return false;
-		}catch(SecurityException e) {
-			System.out.println("Failed to delete directory");
-			e.printStackTrace();
+		if(isDir) {
+			File[] files = filePath.listFiles();
+			for (File file : files) {
+	            if (file.isDirectory()) {
+	                this.remove(file, true);
+	            } else {
+	                file.delete();
+	            }
+	        }
+			filePath.delete();
+			return true;
+		}else
 			return false;
-		}
-		return true;
 	}
 	/**
 	 * Deletes file/directory
@@ -140,14 +150,11 @@ public class FileManager {
 	 * @return Returns the files deletion
 	 * */
 	public boolean remove(File filePath) {
-		try {
-			filePath.delete();
-		}catch(SecurityException e) {
-			System.out.println("Failed to delete file");
-			e.printStackTrace();
+		if(filePath.delete()) {
+			return true;
+		}else {
 			return false;
 		}
-		return true;
 	}
 	/**
 	 * Renames file/directory
