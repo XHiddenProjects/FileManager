@@ -7,11 +7,12 @@ public class FileManagerTest {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		FileManager fm = new FileManager();
-		File fpath = fm.toFile("demo/test.html");
-		File dpath = fm.toFile("demo");
+		File fpath = fm.toFile("C:\\Users\\gzeag\\OneDrive\\Desktop\\demo/test.html");
+		File dpath = fm.toFile("C:\\Users\\gzeag\\OneDrive\\Desktop\\demo");
 		fm.add(dpath,true);
 		fm.add(fpath);
-		fm.write(fpath, "Test this out");
+		String userIn = fm.usePrompt("Enter Text");
+		fm.write(fpath, userIn);
 		System.out.println(fm.read(fpath));
 
 		if(fm.remove(dpath,true)) {
