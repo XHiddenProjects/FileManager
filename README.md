@@ -151,3 +151,8 @@ _Set_ the filepath permission; type:
   fm.set(fPath, "read");//Allowed items: "read", "write", or "execute"
   fm.set(fPath, "read", false);//Allowed items: "read", "write", or "execute"
 ```
+### Users Input
+To recieve the users input; type this:
+```java
+String usersInput = fm.usePrompt("Title");
+```
