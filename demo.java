@@ -13,8 +13,11 @@ public class FileManagerTest {
 		fm.add(fpath);
 		fm.write(fpath, "Test this out");
 		System.out.println(fm.read(fpath));
+
 		if(fm.remove(dpath,true)) {
 			System.out.println("Successfully deleted");
+		}else {
+			System.out.println("Failed");
 		}
 	}
 }
