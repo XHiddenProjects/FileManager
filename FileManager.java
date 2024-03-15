@@ -9,8 +9,8 @@ import java.util.*;
  * FileManager is an easy-to-use file management functions and keeps 
  * things organized and does the importing for you
  * @author XhiddenProjects
- * @version 1.0.0
- * @since 3/13/2024
+ * @version 1.0.2
+ * @since 3/15/2024
  * @see <a href="https://github.com/XHiddenProjects/FileManager" target>Documentation</a>
  */
 public class FileManager {
