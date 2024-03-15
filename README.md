@@ -132,8 +132,8 @@ Returns a list of directories and/or files; type:
 ### list w/ filter
 Returns a list of directories and/or files based on filter; type:
 ```java
-  fm.listFilter(dPath); //Returns filtered directories/files
-  fm.listFilter(dPath, true); //Returns filtered files
+  fm.listFilter(dPath, filter); //Returns filtered directories/files
+  fm.listFilter(dPath, true, filter); //Returns filtered files
 ```
 ### is
 Check if the filepath _is_; type:
