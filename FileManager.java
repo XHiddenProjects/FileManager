@@ -114,19 +114,25 @@ public class FileManager {
 	 * */
 	public boolean remove(File filePath, boolean isDir) {
 		//File fileObj = new File(file2);
-		if(isDir) {
-			File[] files = filePath.listFiles();
-			for (File file : files) {
-	            if (file.isDirectory()) {
-	                this.remove(file, true);
-	            } else {
-	                file.delete();
-	            }
-	        }
-			filePath.delete();
-			return true;
-		}else
+		try {
+			if(isDir) {
+				File[] files = filePath.listFiles();
+				for (File file : files) {
+		            if (file.isDirectory()) {
+		                this.remove(file, true);
+		            } else {
+		                file.delete();
+		            }
+		        }
+				filePath.delete();
+			}else
+				return false;
+		}catch(SecurityException e) {
+			System.out.println("Failed to delete directory");
+			e.printStackTrace();
 			return false;
+		}
+		return true;
 	}
 	/**
 	 * Deletes file/directory
@@ -134,11 +140,14 @@ public class FileManager {
 	 * @return Returns the files deletion
 	 * */
 	public boolean remove(File filePath) {
-		if(filePath.delete()) {
-			return true;
-		}else {
+		try {
+			filePath.delete();
+		}catch(SecurityException e) {
+			System.out.println("Failed to delete file");
+			e.printStackTrace();
 			return false;
 		}
+		return true;
 	}
 	/**
 	 * Renames file/directory
